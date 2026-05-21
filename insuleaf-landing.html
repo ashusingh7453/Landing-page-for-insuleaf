@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InsuLeaf™ — Nature's Answer to Blood Sugar Balance</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green-deep: #1a3a2a;
+    --green-mid: #2d6a4f;
+    --green-bright: #52b788;
+    --green-light: #b7e4c7;
+    --cream: #fdf6ec;
+    --amber: #e9a825;
+    --amber-light: #fdeac0;
+    --text-dark: #0f1e17;
+    --text-mid: #3b5249;
+    --text-light: #6b8c7a;
+    --white: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(253,246,236,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(82,183,136,0.15);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 700;
+    color: var(--green-deep);
+    letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: var(--green-bright); }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a {
+    text-decoration: none; color: var(--text-mid);
+    font-size: 0.9rem; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--green-mid); }
+  .nav-cta {
+    background: var(--green-mid); color: var(--white) !important;
+    padding: 10px 22px; border-radius: 100px;
+    transition: background 0.2s, transform 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--green-deep) !important; transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 120px 72px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: radial-gradient(ellipse 70% 80% at 80% 50%, #d8f3dc44 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 10% 80%, #b7e4c722 0%, transparent 60%);
+  }
+  /* decorative leaves */
+  .leaf-deco {
+    position: absolute; z-index: 0; opacity: 0.07;
+    font-size: 18rem; line-height: 1;
+    user-select: none; pointer-events: none;
+  }
+  .leaf-deco.l1 { top: -40px; right: -60px; transform: rotate(20deg); }
+  .leaf-deco.l2 { bottom: -60px; left: -40px; transform: rotate(-30deg); font-size: 12rem; }
+
+  .hero-content { position: relative; z-index: 1; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--amber-light); color: #7a5c00;
+    border: 1px solid var(--amber); border-radius: 100px;
+    padding: 6px 16px; font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    margin-bottom: 24px;
+    animation: fadeSlideUp 0.6s ease both;
+  }
+  .hero-badge::before { content: '🌿'; font-size: 0.9rem; }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    line-height: 1.1; font-weight: 700;
+    color: var(--green-deep);
+    margin-bottom: 20px;
+    animation: fadeSlideUp 0.6s 0.1s ease both;
+  }
+  h1 em { font-style: italic; color: var(--green-bright); }
+
+  .hero-sub {
+    font-size: 1.1rem; line-height: 1.7;
+    color: var(--text-mid); max-width: 480px;
+    margin-bottom: 36px;
+    animation: fadeSlideUp 0.6s 0.2s ease both;
+  }
+
+  .hero-actions {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    animation: fadeSlideUp 0.6s 0.3s ease both;
+  }
+  .btn-primary {
+    background: var(--green-mid); color: var(--white);
+    border: none; border-radius: 100px;
+    padding: 16px 34px; font-size: 1rem; font-weight: 600;
+    cursor: pointer; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 24px rgba(45,106,79,0.35);
+  }
+  .btn-primary:hover { background: var(--green-deep); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(45,106,79,0.4); }
+  .btn-secondary {
+    background: transparent; color: var(--green-mid);
+    border: 2px solid var(--green-mid); border-radius: 100px;
+    padding: 14px 30px; font-size: 1rem; font-weight: 600;
+    cursor: pointer; text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-secondary:hover { background: var(--green-mid); color: var(--white); }
+
+  .hero-trust {
+    margin-top: 40px; display: flex; align-items: center; gap: 20px;
+    animation: fadeSlideUp 0.6s 0.4s ease both;
+  }
+  .stars { color: var(--amber); font-size: 1.1rem; letter-spacing: 2px; }
+  .trust-text { font-size: 0.85rem; color: var(--text-light); }
+  .trust-text strong { color: var(--text-dark); }
+
+  /* hero image side */
+  .hero-visual {
+    position: relative; z-index: 1;
+    display: flex; justify-content: center; align-items: center;
+    animation: fadeSlideUp 0.7s 0.2s ease both;
+  }
+  .bottle-card {
+    background: white;
+    border-radius: 32px;
+    padding: 48px 40px;
+    box-shadow: 0 24px 80px rgba(26,58,42,0.12), 0 4px 16px rgba(26,58,42,0.06);
+    text-align: center; width: 340px;
+    position: relative;
+  }
+  .bottle-emoji {
+    font-size: 6rem; display: block; margin-bottom: 16px;
+    filter: drop-shadow(0 8px 24px rgba(82,183,136,0.3));
+    animation: float 4s ease-in-out infinite;
+  }
+  .bottle-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; font-weight: 700; color: var(--green-deep);
+    margin-bottom: 4px;
+  }
+  .bottle-sub { font-size: 0.85rem; color: var(--text-light); margin-bottom: 20px; }
+  .bottle-pills {
+    display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+  }
+  .pill-tag {
+    background: var(--green-light); color: var(--green-deep);
+    font-size: 0.75rem; font-weight: 600; border-radius: 100px;
+    padding: 4px 12px;
+  }
+  .badge-guarantee {
+    position: absolute; top: -16px; right: -16px;
+    background: var(--amber); color: var(--green-deep);
+    border-radius: 50%; width: 72px; height: 72px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-size: 0.6rem; font-weight: 700; text-align: center; line-height: 1.3;
+    text-transform: uppercase; letter-spacing: 0.02em;
+    box-shadow: 0 4px 16px rgba(233,168,37,0.4);
+  }
+
+  /* ── SECTION COMMONS ── */
+  section { padding: 96px 72px; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--green-bright);
+    margin-bottom: 12px;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    line-height: 1.2; color: var(--green-deep); font-weight: 700;
+  }
+  .section-intro { font-size: 1.05rem; color: var(--text-mid); line-height: 1.7; max-width: 600px; margin-top: 16px; }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--green-deep);
+    padding: 40px 72px;
+    display: grid; grid-template-columns: repeat(4,1fr);
+    gap: 32px; text-align: center;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem; font-weight: 700; color: var(--green-light);
+    display: block;
+  }
+  .stat-label { font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-top: 4px; }
+
+  /* ── BENEFITS ── */
+  .benefits { background: var(--white); }
+  .benefits-grid {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 28px; margin-top: 56px;
+  }
+  .benefit-card {
+    background: var(--cream); border-radius: 20px;
+    padding: 36px 28px;
+    border: 1px solid rgba(82,183,136,0.15);
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .benefit-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--green-bright), var(--green-mid));
+    opacity: 0; transition: opacity 0.25s;
+  }
+  .benefit-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(26,58,42,0.1); }
+  .benefit-card:hover::before { opacity: 1; }
+  .benefit-icon { font-size: 2.2rem; margin-bottom: 16px; display: block; }
+  .benefit-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 600; color: var(--green-deep);
+    margin-bottom: 10px;
+  }
+  .benefit-desc { font-size: 0.9rem; color: var(--text-mid); line-height: 1.65; }
+
+  /* ── INGREDIENTS ── */
+  .ingredients { background: var(--cream); }
+  .ingredients-layout {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 64px; align-items: start; margin-top: 56px;
+  }
+  .ingredient-list { display: flex; flex-direction: column; gap: 16px; }
+  .ingredient-item {
+    display: flex; gap: 16px; align-items: flex-start;
+    background: white; border-radius: 16px; padding: 20px 22px;
+    border: 1px solid rgba(82,183,136,0.1);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .ingredient-item:hover { border-color: var(--green-bright); box-shadow: 0 4px 16px rgba(82,183,136,0.12); }
+  .ing-icon { font-size: 1.6rem; flex-shrink: 0; margin-top: 2px; }
+  .ing-name { font-weight: 600; color: var(--green-deep); font-size: 0.95rem; margin-bottom: 4px; }
+  .ing-desc { font-size: 0.83rem; color: var(--text-light); line-height: 1.55; }
+  .ingredients-cta-box {
+    background: linear-gradient(135deg, var(--green-deep) 0%, var(--green-mid) 100%);
+    border-radius: 24px; padding: 48px 36px;
+    color: white; position: sticky; top: 100px;
+  }
+  .ingredients-cta-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem; margin-bottom: 14px; line-height: 1.2;
+  }
+  .ingredients-cta-box p { font-size: 0.92rem; line-height: 1.65; opacity: 0.85; margin-bottom: 28px; }
+  .ing-check { display: flex; gap: 10px; align-items: center; margin-bottom: 12px; font-size: 0.9rem; }
+  .ing-check::before { content: '✓'; background: var(--green-bright); border-radius: 50%;
+    width: 20px; height: 20px; display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem; font-weight: 700; flex-shrink: 0; }
+  .ing-checks { margin-bottom: 32px; }
+
+  /* ── HOW IT WORKS ── */
+  .how { background: var(--white); }
+  .steps {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 40px; margin-top: 60px; position: relative;
+  }
+  .steps::before {
+    content: ''; position: absolute;
+    top: 52px; left: calc(16.66% + 20px); right: calc(16.66% + 20px);
+    height: 2px;
+    background: linear-gradient(90deg, var(--green-bright), var(--green-mid));
+  }
+  .step { text-align: center; }
+  .step-num {
+    width: 60px; height: 60px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--green-bright), var(--green-mid));
+    color: white; font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px; position: relative; z-index: 1;
+    box-shadow: 0 8px 24px rgba(45,106,79,0.3);
+  }
+  .step-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--green-deep); margin-bottom: 10px; }
+  .step-desc { font-size: 0.88rem; color: var(--text-mid); line-height: 1.6; max-width: 240px; margin: 0 auto; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials { background: linear-gradient(135deg, #1a3a2a 0%, #2d6a4f 100%); }
+  .testimonials h2 { color: white; }
+  .testimonials .section-label { color: var(--green-light); }
+  .testi-grid {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 24px; margin-top: 56px;
+  }
+  .testi-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px; padding: 32px 28px;
+    backdrop-filter: blur(8px);
+    transition: background 0.25s;
+  }
+  .testi-card:hover { background: rgba(255,255,255,0.12); }
+  .testi-stars { color: var(--amber); font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 16px; }
+  .testi-text { font-size: 0.92rem; line-height: 1.7; color: rgba(255,255,255,0.85); margin-bottom: 24px; font-style: italic; }
+  .testi-author { display: flex; align-items: center; gap: 12px; }
+  .testi-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--green-bright); display: flex;
+    align-items: center; justify-content: center;
+    font-size: 1.1rem; font-weight: 700; color: white;
+  }
+  .testi-name { font-weight: 600; color: white; font-size: 0.9rem; }
+  .testi-loc { font-size: 0.78rem; color: rgba(255,255,255,0.5); }
+
+  /* ── PRICING ── */
+  .pricing { background: var(--cream); }
+  .pricing-grid {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 24px; margin-top: 60px; align-items: start;
+  }
+  .price-card {
+    background: white; border-radius: 24px; padding: 40px 32px;
+    border: 2px solid transparent; text-align: center;
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .price-card:hover { transform: translateY(-6px); box-shadow: 0 20px 56px rgba(26,58,42,0.1); }
+  .price-card.featured {
+    border-color: var(--green-bright);
+    box-shadow: 0 12px 48px rgba(82,183,136,0.2);
+  }
+  .price-card.featured::before {
+    content: 'MOST POPULAR'; position: absolute;
+    top: 18px; right: -28px;
+    background: var(--green-bright); color: white;
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.06em;
+    padding: 4px 40px; transform: rotate(45deg);
+  }
+  .price-bottles { font-size: 2.5rem; margin-bottom: 12px; }
+  .price-supply { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--green-deep); margin-bottom: 4px; }
+  .price-count { font-size: 0.83rem; color: var(--text-light); margin-bottom: 24px; }
+  .price-main {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem; font-weight: 700; color: var(--green-deep);
+    line-height: 1; margin-bottom: 4px;
+  }
+  .price-main sup { font-size: 1.5rem; vertical-align: top; margin-top: 8px; }
+  .price-per { font-size: 0.83rem; color: var(--text-light); margin-bottom: 28px; }
+  .price-savings { background: var(--amber-light); color: #7a5c00; border-radius: 100px;
+    font-size: 0.8rem; font-weight: 600; padding: 4px 14px; display: inline-block; margin-bottom: 24px; }
+  .price-perks { list-style: none; text-align: left; margin-bottom: 28px; }
+  .price-perks li { font-size: 0.88rem; color: var(--text-mid); padding: 6px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; gap: 8px; align-items: center; }
+  .price-perks li::before { content: '✓'; color: var(--green-bright); font-weight: 700; font-size: 0.8rem; }
+
+  /* ── GUARANTEE ── */
+  .guarantee {
+    background: var(--white); display: grid;
+    grid-template-columns: auto 1fr; gap: 64px; align-items: center;
+  }
+  .guarantee-seal {
+    width: 180px; height: 180px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--amber) 0%, #f5b942 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; flex-shrink: 0;
+    box-shadow: 0 12px 40px rgba(233,168,37,0.4);
+  }
+  .guarantee-seal .big { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 700; color: white; line-height: 1; }
+  .guarantee-seal .small { font-size: 0.7rem; font-weight: 700; color: rgba(255,255,255,0.85); letter-spacing: 0.06em; text-transform: uppercase; }
+  .guarantee h2 { margin-bottom: 16px; }
+  .guarantee p { font-size: 1rem; color: var(--text-mid); line-height: 1.75; max-width: 560px; }
+
+  /* ── FAQ ── */
+  .faq { background: var(--cream); }
+  .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 56px; }
+  .faq-item {
+    background: white; border-radius: 16px;
+    padding: 28px 28px; cursor: pointer;
+    border: 1px solid rgba(82,183,136,0.1);
+    transition: border-color 0.2s;
+  }
+  .faq-item:hover { border-color: var(--green-bright); }
+  .faq-q { font-weight: 600; color: var(--green-deep); font-size: 0.95rem; margin-bottom: 10px; display: flex; gap: 12px; justify-content: space-between; }
+  .faq-a { font-size: 0.88rem; color: var(--text-mid); line-height: 1.65; }
+
+  /* ── CTA BANNER ── */
+  .cta-banner {
+    background: linear-gradient(135deg, var(--green-deep) 0%, var(--green-mid) 60%, var(--green-bright) 100%);
+    padding: 96px 72px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .cta-banner::before {
+    content: '🌿'; position: absolute; font-size: 20rem;
+    opacity: 0.04; top: -40px; left: -80px;
+    transform: rotate(-30deg); pointer-events: none;
+  }
+  .cta-banner h2 { color: white; margin-bottom: 16px; }
+  .cta-banner p { color: rgba(255,255,255,0.8); font-size: 1.05rem; max-width: 520px; margin: 0 auto 36px; }
+  .cta-banner .btn-primary { background: var(--amber); color: var(--green-deep); box-shadow: 0 8px 32px rgba(233,168,37,0.4); }
+  .cta-banner .btn-primary:hover { background: #f5c842; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--green-deep); color: rgba(255,255,255,0.6);
+    padding: 48px 72px; font-size: 0.82rem; line-height: 1.8;
+    text-align: center;
+  }
+  footer strong { color: var(--green-light); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-12px); }
+  }
+
+  /* Scroll reveal */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    nav { padding: 16px 32px; }
+    .hero { grid-template-columns: 1fr; padding: 120px 32px 64px; text-align: center; }
+    .hero-sub { margin: 0 auto 36px; }
+    .hero-actions { justify-content: center; }
+    .hero-trust { justify-content: center; }
+    .hero-visual { margin-top: 48px; }
+    section { padding: 64px 32px; }
+    .stats-bar { padding: 40px 32px; grid-template-columns: repeat(2,1fr); }
+    .benefits-grid, .testi-grid, .pricing-grid { grid-template-columns: 1fr 1fr; }
+    .ingredients-layout, .guarantee { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr; }
+    .steps::before { display: none; }
+    .faq-grid { grid-template-columns: 1fr; }
+    .guarantee-seal { margin: 0 auto; }
+    .cta-banner { padding: 64px 32px; }
+    footer { padding: 40px 32px; }
+  }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .benefits-grid, .testi-grid, .pricing-grid { grid-template-columns: 1fr; }
+    .stats-bar { grid-template-columns: 1fr 1fr; gap: 24px; }
+    .bottle-card { width: 280px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Insu<span>Leaf</span>™</div>
+  <div class="nav-links">
+    <a href="#benefits">Benefits</a>
+    <a href="#ingredients">Ingredients</a>
+    <a href="#testimonials">Reviews</a>
+    <a href="#pricing" class="nav-cta">Get InsuLeaf →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="leaf-deco l1">🍃</div>
+  <div class="leaf-deco l2">🌿</div>
+  <div class="hero-content">
+    <div class="hero-badge">13 Plant-Based Ingredients</div>
+    <h1>Balance Your Blood Sugar,<br><em>Naturally.</em></h1>
+    <p class="hero-sub">InsuLeaf™ combines 13 carefully selected botanicals, minerals, and antioxidants into one daily supplement designed to support healthy glucose metabolism and sustained energy — no harsh chemicals, just nature.</p>
+    <div class="hero-actions">
+      <a href="#pricing" class="btn-primary">🌿 Order Now — Save 70%</a>
+      <a href="#benefits" class="btn-secondary">Learn More</a>
+    </div>
+    <div class="hero-trust">
+      <span class="stars">★★★★★</span>
+      <span class="trust-text"><strong>4.9/5</strong> from over 12,000 verified customers</span>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="bottle-card">
+      <div class="badge-guarantee">60 Day<br>Money<br>Back</div>
+      <span class="bottle-emoji">🌿</span>
+      <div class="bottle-name">InsuLeaf™</div>
+      <div class="bottle-sub">Natural Blood Sugar Support</div>
+      <div class="bottle-pills">
+        <span class="pill-tag">Non-GMO</span>
+        <span class="pill-tag">Gluten-Free</span>
+        <span class="pill-tag">GMP Certified</span>
+        <span class="pill-tag">Made in USA</span>
+        <span class="pill-tag">Plant-Based</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="reveal">
+    <span class="stat-num">13</span>
+    <div class="stat-label">Active Plant-Based Ingredients</div>
+  </div>
+  <div class="reveal">
+    <span class="stat-num">12K+</span>
+    <div class="stat-label">Satisfied Customers</div>
+  </div>
+  <div class="reveal">
+    <span class="stat-num">60</span>
+    <div class="stat-label">Day Money-Back Guarantee</div>
+  </div>
+  <div class="reveal">
+    <span class="stat-num">100%</span>
+    <div class="stat-label">Natural, Non-GMO Formula</div>
+  </div>
+</div>
+
+<!-- BENEFITS -->
+<section class="benefits" id="benefits">
+  <div class="section-label">Why InsuLeaf Works</div>
+  <h2>Six Ways InsuLeaf™<br>Supports Your Health</h2>
+  <p class="section-intro">Our multi-targeted formula addresses blood sugar balance from every angle — not just one.</p>
+  <div class="benefits-grid">
+    <div class="benefit-card reveal">
+      <span class="benefit-icon">🩸</span>
+      <div class="benefit-title">Blood Sugar Balance</div>
+      <p class="benefit-desc">Supports your body's natural ability to maintain healthy glucose levels within the normal range, all day long.</p>
+    </div>
+    <div class="benefit-card reveal">
+      <span class="benefit-icon">⚡</span>
+      <div class="benefit-title">Sustained Energy</div>
+      <p class="benefit-desc">Say goodbye to mid-day crashes. InsuLeaf promotes steady, balanced energy by supporting efficient glucose metabolism.</p>
+    </div>
+    <div class="benefit-card reveal">
+      <span class="benefit-icon">🔥</span>
+      <div class="benefit-title">Metabolic Support</div>
+      <p class="benefit-desc">Ingredients like cayenne pepper and guggul help your body convert nutrients into usable energy more efficiently.</p>
+    </div>
+    <div class="benefit-card reveal">
+      <span class="benefit-icon">🧠</span>
+      <div class="benefit-title">Enhanced Insulin Sensitivity</div>
+      <p class="benefit-desc">Helps your cells respond better to insulin, supporting glucose uptake rather than allowing it to remain elevated in your bloodstream.</p>
+    </div>
+    <div class="benefit-card reveal">
+      <span class="benefit-icon">🍫</span>
+      <div class="benefit-title">Curbs Sugar Cravings</div>
+      <p class="benefit-desc">Specially selected botanicals help reduce cravings for sweets and high-carb foods — making healthy eating easier.</p>
+    </div>
+    <div class="benefit-card reveal">
+      <span class="benefit-icon">🛡️</span>
+      <div class="benefit-title">Antioxidant Protection</div>
+      <p class="benefit-desc">Rich in antioxidants that protect cells from oxidative stress and support long-term metabolic health and overall wellness.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INGREDIENTS -->
+<section class="ingredients" id="ingredients">
+  <div class="section-label">The Formula</div>
+  <h2>13 Powerful Ingredients,<br>One Synergistic Blend</h2>
+  <div class="ingredients-layout">
+    <div class="ingredient-list">
+      <div class="ingredient-item reveal">
+        <span class="ing-icon">🌿</span>
+        <div>
+          <div class="ing-name">Berberine</div>
+          <div class="ing-desc">One of nature's most studied compounds for supporting healthy blood sugar and insulin sensitivity.</div>
+        </div>
+      </div>
+      <div class="ingredient-item reveal">
+        <span class="ing-icon">🌰</span>
+        <div>
+          <div class="ing-name">Cinnamon Bark Extract</div>
+          <div class="ing-desc">Traditionally used for centuries to support healthy glucose uptake and metabolic function.</div>
+        </div>
+      </div>
+      <div class="ingredient-item reveal">
+        <span class="ing-icon">🫚</span>
+        <div>
+          <div class="ing-name">Cayenne Pepper</div>
+          <div class="ing-desc">Boosts metabolism and supports the body's ability to convert nutrients into energy effectively.</div>
+        </div>
+      </div>
+      <div class="ingredient-item reveal">
+        <span class="ing-icon">🌱</span>
+        <div>
+          <div class="ing-name">Guggul Extract</div>
+          <div class="ing-desc">An Ayurvedic botanical that promotes metabolic activity and supports healthy lipid balance.</div>
+        </div>
+      </div>
+      <div class="ingredient-item reveal">
+        <span class="ing-icon">🍃</span>
+        <div>
+          <div class="ing-name">Bitter Melon</div>
+          <div class="ing-desc">A time-honored herb used in traditional medicine to support healthy blood glucose levels.</div>
+        </div>
+      </div>
+      <div class="ingredient-item reveal">
+        <span class="ing-icon">💎</span>
+        <div>
+          <div class="ing-name">Chromium Picolinate</div>
+          <div class="ing-desc">An essential mineral that helps enhance the action of insulin and support glucose metabolism.</div>
+        </div>
+      </div>
+      <div class="ingredient-item reveal">
+        <span class="ing-icon">🌻</span>
+        <div>
+          <div class="ing-name">+ 7 More Botanicals & Nutrients</div>
+          <div class="ing-desc">Including alpha-lipoic acid, banaba leaf, gymnema sylvestre, and more — all working synergistically.</div>
+        </div>
+      </div>
+    </div>
+    <div class="ingredients-cta-box reveal">
+      <h3>A Formula Built on Nature & Science</h3>
+      <p>Every ingredient in InsuLeaf™ was chosen for its role in supporting glucose metabolism, metabolic wellness, and overall vitality. Our proprietary blend doesn't just target one pathway — it works from multiple angles simultaneously.</p>
+      <div class="ing-checks">
+        <div class="ing-check">Manufactured in FDA-registered, cGMP-certified facility</div>
+        <div class="ing-check">Third-party tested for purity & potency</div>
+        <div class="ing-check">No artificial fillers or unnecessary additives</div>
+        <div class="ing-check">100% plant-based, non-GMO, gluten-free</div>
+        <div class="ing-check">Made proudly in the USA</div>
+      </div>
+      <a href="#pricing" class="btn-primary" style="width:100%;justify-content:center;">Get InsuLeaf™ Today →</a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="section-label" style="text-align:center">Simple Daily Routine</div>
+  <h2 style="text-align:center">How to Use InsuLeaf™</h2>
+  <div class="steps">
+    <div class="step reveal">
+      <div class="step-num">1</div>
+      <div class="step-title">Take 2 Capsules Daily</div>
+      <p class="step-desc">Simply take 2 capsules each day, preferably with a meal, to fit seamlessly into your routine.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">2</div>
+      <div class="step-title">Let Nature Work</div>
+      <p class="step-desc">The 13 plant-based ingredients absorb and begin supporting your glucose metabolism and energy levels.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">3</div>
+      <div class="step-title">Feel the Difference</div>
+      <p class="step-desc">With consistent use alongside a healthy diet and activity, experience more balanced energy and wellness.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="section-label">Real Stories</div>
+  <h2>What Our Customers Say</h2>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"I struggled with blood sugar swings for nearly 8 years. I felt drained and frustrated every single day. After 6 weeks on InsuLeaf, my energy is steady and I feel like myself again. Incredible product."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">M</div>
+        <div>
+          <div class="testi-name">Margaret T.</div>
+          <div class="testi-loc">Texas, USA · Verified Purchase</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"After seeing the impressive ingredients list, I decided to try InsuLeaf. A few weeks later I can confirm — the capsules are incredibly powerful and efficient in helping me feel balanced and energized."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">R</div>
+        <div>
+          <div class="testi-name">Robert K.</div>
+          <div class="testi-loc">Florida, USA · Verified Purchase</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"InsuLeaf has brought me great relief. My symptoms are gone and I feel more energized than I have in years. I highly recommend it to anyone looking for natural metabolic support!"</p>
+      <div class="testi-author">
+        <div class="testi-avatar">L</div>
+        <div>
+          <div class="testi-name">Linda K.</div>
+          <div class="testi-loc">California, USA · Verified Purchase</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="section-label" style="text-align:center">Special Offer</div>
+  <h2 style="text-align:center">Choose Your InsuLeaf™ Package</h2>
+  <p class="section-intro" style="margin:16px auto 0;text-align:center">All orders are protected by our 60-day money-back guarantee. Try it risk-free.</p>
+  <div class="pricing-grid">
+    <!-- Starter -->
+    <div class="price-card reveal">
+      <div class="price-bottles">🌿</div>
+      <div class="price-supply">1 Bottle</div>
+      <div class="price-count">30-Day Supply</div>
+      <div class="price-main"><sup>$</sup>69</div>
+      <div class="price-per">per bottle</div>
+      <ul class="price-perks">
+        <li>1 Bottle of InsuLeaf™</li>
+        <li>60-Day Money-Back Guarantee</li>
+        <li>Free Digital Guide</li>
+      </ul>
+      <a href="#" class="btn-secondary" style="display:block;text-align:center;">Order 1 Bottle</a>
+    </div>
+    <!-- Best Value -->
+    <div class="price-card featured reveal">
+      <div class="price-bottles">🌿🌿🌿</div>
+      <div class="price-supply">3 Bottles</div>
+      <div class="price-count">90-Day Supply</div>
+      <div class="price-savings">Save $120</div>
+      <div class="price-main"><sup>$</sup>49</div>
+      <div class="price-per">per bottle · $147 total</div>
+      <ul class="price-perks">
+        <li>3 Bottles of InsuLeaf™</li>
+        <li>60-Day Money-Back Guarantee</li>
+        <li>Free Digital Guide</li>
+        <li>Free US Shipping</li>
+      </ul>
+      <a href="#" class="btn-primary" style="display:block;text-align:center;">Order 3 Bottles →</a>
+    </div>
+    <!-- Best Deal -->
+    <div class="price-card reveal">
+      <div class="price-bottles">🌿🌿🌿🌿🌿🌿</div>
+      <div class="price-supply">6 Bottles</div>
+      <div class="price-count">180-Day Supply</div>
+      <div class="price-savings">Save $300 + Free Bonuses</div>
+      <div class="price-main"><sup>$</sup>39</div>
+      <div class="price-per">per bottle · $234 total</div>
+      <ul class="price-perks">
+        <li>6 Bottles of InsuLeaf™</li>
+        <li>60-Day Money-Back Guarantee</li>
+        <li>2 FREE Bonus E-Books</li>
+        <li>Free US Shipping</li>
+      </ul>
+      <a href="#" class="btn-secondary" style="display:block;text-align:center;">Order 6 Bottles</a>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="guarantee">
+  <div class="guarantee-seal">
+    <div class="big">60</div>
+    <div class="small">Day<br>Money Back<br>Guarantee</div>
+  </div>
+  <div class="reveal">
+    <div class="section-label">Zero Risk</div>
+    <h2>Try InsuLeaf™ Completely Risk-Free</h2>
+    <p style="margin-top:16px;">We're so confident in InsuLeaf™ that every order is backed by our iron-clad 60-day money-back guarantee. If you're not completely satisfied with your results for any reason, simply contact us within 60 days of your purchase and we'll issue a full refund — no complicated steps, no hidden conditions, no questions asked. Your investment is fully protected, so there's absolutely no reason not to try it.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="section-label" style="text-align:center">Got Questions?</div>
+  <h2 style="text-align:center">Frequently Asked Questions</h2>
+  <div class="faq-grid">
+    <div class="faq-item reveal">
+      <div class="faq-q">Is InsuLeaf™ safe to use daily? <span>+</span></div>
+      <div class="faq-a">Yes. InsuLeaf™ is made with 100% natural, non-GMO ingredients in an FDA-registered, cGMP-certified facility. It's gluten-free, dairy-free, and soy-free. As always, consult your healthcare provider before starting any supplement.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q">How long does it take to see results? <span>+</span></div>
+      <div class="faq-a">Results vary, but most users report noticing a difference within 2–4 weeks of consistent use. For optimal results, the 90- or 180-day supply is recommended.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q">Where is InsuLeaf™ manufactured? <span>+</span></div>
+      <div class="faq-a">InsuLeaf™ is proudly manufactured in the United States in an FDA-registered, cGMP-certified facility under strict quality control standards, with third-party testing for purity and potency.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q">Where can I buy InsuLeaf™? <span>+</span></div>
+      <div class="faq-a">InsuLeaf™ is only available through the official website to ensure you receive the genuine formula along with all guarantee and bonus benefits. Avoid third-party sellers.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q">Is this a replacement for medication? <span>+</span></div>
+      <div class="faq-a">No. InsuLeaf™ is a dietary supplement intended to support general wellness. It is not designed to diagnose, treat, cure, or prevent any disease. Always consult a qualified healthcare professional.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q">How do I take InsuLeaf™? <span>+</span></div>
+      <div class="faq-a">Simply take 2 capsules daily, preferably with a meal. It's designed to fit effortlessly into your existing daily routine.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="section-label" style="color:var(--green-light)">Limited Time Offer</div>
+  <h2>Ready to Take Control of<br>Your Blood Sugar?</h2>
+  <p>Join thousands of satisfied customers. Try InsuLeaf™ today and experience the difference nature can make — completely risk-free.</p>
+  <a href="#pricing" class="btn-primary" style="font-size:1.1rem;padding:18px 40px;">🌿 Get InsuLeaf™ Now — 70% Off</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div style="margin-bottom:16px;">
+    <strong style="font-family:'Playfair Display',serif;font-size:1.2rem;">InsuLeaf™</strong>
+  </div>
+  <p>† These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Always consult a qualified healthcare professional before starting any supplement program, especially if you are pregnant, nursing, taking medication, or managing a medical condition.</p>
+  <div style="margin-top:20px;display:flex;gap:24px;justify-content:center;flex-wrap:wrap;">
+    <a href="#" style="color:var(--green-light);text-decoration:none;">Privacy Policy</a>
+    <a href="#" style="color:var(--green-light);text-decoration:none;">Terms of Service</a>
+    <a href="#" style="color:var(--green-light);text-decoration:none;">Contact Us</a>
+    <a href="#" style="color:var(--green-light);text-decoration:none;">Refund Policy</a>
+  </div>
+  <div style="margin-top:20px;opacity:0.5;">© 2026 InsuLeaf™. All rights reserved.</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Smooth nav highlight
+  const navCta = document.querySelector('.nav-cta');
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 60) {
+      nav.style.boxShadow = '0 4px 24px rgba(26,58,42,0.08)';
+    } else {
+      nav.style.boxShadow = 'none';
+    }
+  });
+</script>
+</body>
+</html>
